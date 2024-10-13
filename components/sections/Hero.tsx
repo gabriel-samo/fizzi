@@ -14,15 +14,17 @@ import { Container } from "@/components/Container";
 import { TextSplitter } from "@/components/TextSplitter";
 
 import heroImage from "@/public/images/all-cans-bunched.png";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Hero() {
   const { ready } = useStore((state) => state);
+  const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
   useGSAP(
     () => {
-      if (!ready) return;
+      if (!ready && isDesktop) return;
 
       const introTl = gsap.timeline();
 
@@ -66,15 +68,17 @@ export default function Hero() {
         })
         .from(".text-side-body", { y: 20, opacity: 0 });
     },
-    { dependencies: [ready] },
+    { dependencies: [ready, isDesktop] },
   );
 
   return (
     <Container className="hero opacity-0">
-      <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
-        <Scene />
-        <Bubbles count={300} speed={2} repeat={true} />
-      </View>
+      {isDesktop && (
+        <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
+          <Scene />
+          <Bubbles count={300} speed={2} repeat={true} />
+        </View>
+      )}
 
       <div className="grid">
         <div className="grid h-screen place-items-center">
