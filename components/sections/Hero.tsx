@@ -3,9 +3,11 @@
 import gsap from "gsap";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
+import { View } from "@react-three/drei";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 import Button from "@/components/Button";
+import Scene from "@/components/3d/Scene";
 import { Container } from "@/components/Container";
 import { TextSplitter } from "@/components/TextSplitter";
 
@@ -36,7 +38,6 @@ export default function Hero() {
         start: "top top",
         end: "bottom bottom",
         scrub: 1.5,
-        markers: true,
       },
     });
 
@@ -61,6 +62,10 @@ export default function Hero() {
 
   return (
     <Container className="hero opacity-0">
+      <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
+        <Scene />
+      </View>
+
       <div className="grid">
         <div className="grid h-screen place-items-center">
           <div className="grid auto-rows-min place-items-center text-center">

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import Header from "@/components/sections/Header";
+import ViewCanvas from "@/components/3d/ViewCanvas";
 
 export const runtime = "edge";
 
@@ -27,7 +28,10 @@ export default function RootLayout({
     <html lang="en" className={alpino.variable}>
       <body className="overflow-x-hidden bg-yellow-300 antialiased">
         <Header />
-        <main>{children}</main>
+        <main>
+          {children}
+          <ViewCanvas />
+        </main>
       </body>
     </html>
   );
