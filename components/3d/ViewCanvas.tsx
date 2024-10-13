@@ -2,9 +2,10 @@
 import { View } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
-type Props = {};
+// type Props = {};
 
-export default function ViewCanvas({}: Props) {
+// export default function ViewCanvas({}: Props) {
+export default function ViewCanvas() {
   return (
     <Canvas
       style={{
