@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { Environment } from "@react-three/drei";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { useStore } from "@/hooks/useStore";
 import FloatingCan from "@/components/3d/FloatingCan";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -15,6 +16,8 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // export default function Scene({}: Props) {
 export default function Scene() {
+  const { isReady } = useStore((state) => state);
+
   const can1Ref = useRef<Group>(null);
   const can2Ref = useRef<Group>(null);
   const can3Ref = useRef<Group>(null);
@@ -40,6 +43,8 @@ export default function Scene() {
       !groupRef.current
     )
       return;
+
+    isReady();
 
     // Set can starting locations
     gsap.set(can1Ref.current.position, { x: -1.5 });

@@ -8,58 +8,66 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import Button from "@/components/Button";
 import Scene from "@/components/3d/Scene";
+import { useStore } from "@/hooks/useStore";
 import { Bubbles } from "@/components/3d/Bubbles";
 import { Container } from "@/components/Container";
 import { TextSplitter } from "@/components/TextSplitter";
 
 import heroImage from "@/public/images/all-cans-bunched.png";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 export default function Hero() {
-  gsap.registerPlugin(useGSAP, ScrollTrigger);
+  const { ready } = useStore((state) => state);
 
-  useGSAP(() => {
-    const introTl = gsap.timeline();
+  useGSAP(
+    () => {
+      if (!ready) return;
 
-    introTl
-      .set(".hero", { opacity: 1 })
-      .from(".hero-header-word", {
-        scale: 3,
-        opacity: 0,
-        ease: "power4.in",
-        delay: 0.3,
-        stagger: 1,
-      })
-      .from(".hero-subheading", { opacity: 0, y: 30 }, "+=.8")
-      .from(".hero-body", { opacity: 0, y: 10 })
-      .from(".hero-button", { opacity: 0, y: 10, duration: 0.6 });
+      const introTl = gsap.timeline();
 
-    const scrollTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.5,
-      },
-    });
+      introTl
+        .set(".hero", { opacity: 1 })
+        .from(".hero-header-word", {
+          scale: 3,
+          opacity: 0,
+          ease: "power4.in",
+          delay: 0.3,
+          stagger: 1,
+        })
+        .from(".hero-subheading", { opacity: 0, y: 30 }, "+=.8")
+        .from(".hero-body", { opacity: 0, y: 10 })
+        .from(".hero-button", { opacity: 0, y: 10, duration: 0.6 });
 
-    scrollTl
-      .fromTo(
-        "body",
-        { backgroundColor: "#FDE047" },
-        { backgroundColor: "#D9F99D", overwrite: "auto" },
-        1,
-      )
-      .from(".text-side-heading .split-char", {
-        scale: 0.3,
-        y: 40,
-        rotate: -25,
-        opacity: 0,
-        stagger: 0.1,
-        ease: "back.out(3)",
-        duration: 0.5,
-      })
-      .from(".text-side-body", { y: 20, opacity: 0 });
-  }, {});
+      const scrollTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.5,
+        },
+      });
+
+      scrollTl
+        .fromTo(
+          "body",
+          { backgroundColor: "#FDE047" },
+          { backgroundColor: "#D9F99D", overwrite: "auto" },
+          1,
+        )
+        .from(".text-side-heading .split-char", {
+          scale: 0.3,
+          y: 40,
+          rotate: -25,
+          opacity: 0,
+          stagger: 0.1,
+          ease: "back.out(3)",
+          duration: 0.5,
+        })
+        .from(".text-side-body", { y: 20, opacity: 0 });
+    },
+    { dependencies: [ready] },
+  );
 
   return (
     <Container className="hero opacity-0">
