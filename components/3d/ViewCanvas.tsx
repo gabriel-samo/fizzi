@@ -1,4 +1,5 @@
 "use client";
+import { Perf } from "r3f-perf";
 import { View } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
@@ -25,6 +26,7 @@ export default function ViewCanvas() {
       }}
     >
       <View.Port />
+      {/* <Perf /> */}
     </Canvas>
   );
 }
