@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import Header from "@/components/sections/Header";
+import Footer from "@/components/sections/Footer";
 import ViewCanvas from "@/components/3d/ViewCanvas";
 
 export const runtime = "edge";
@@ -32,6 +33,7 @@ export default function RootLayout({
           {children}
           <ViewCanvas />
         </main>
+        <Footer />
       </body>
     </html>
   );
