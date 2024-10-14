@@ -12,9 +12,6 @@ import FloatingCan from "@/components/3d/FloatingCan";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-// type Props = {};
-
-// export default function Scene({}: Props) {
 export default function Scene() {
   const { isReady } = useStore((state) => state);
 

@@ -7,14 +7,14 @@ import { View } from "@react-three/drei";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 import Button from "@/components/Button";
-import Scene from "@/components/3d/Scene";
 import { useStore } from "@/hooks/useStore";
 import { Bubbles } from "@/components/3d/Bubbles";
 import { Container } from "@/components/Container";
+import Scene from "@/components/sections/Hero/Scene";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { TextSplitter } from "@/components/TextSplitter";
 
 import heroImage from "@/public/images/all-cans-bunched.png";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
