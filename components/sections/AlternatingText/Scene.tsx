@@ -76,7 +76,10 @@ export default function Scene() {
       position-x={isDesktop ? 1 : 0}
       rotation-y={isDesktop ? -0.3 : 0}
     >
-      <FloatingCan flavor="strawberryLemonade" floatSpeed={4} />
+      <FloatingCan
+        flavor="strawberryLemonade"
+        floatSpeed={isDesktop ? 1.5 : 4}
+      />
       <Environment files="/hdr/lobby.hdr" environmentIntensity={1.5} />
     </group>
   );

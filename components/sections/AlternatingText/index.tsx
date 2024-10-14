@@ -11,7 +11,7 @@ export default function AlternatingText() {
   return (
     <Container className="alternating-text-container relative bg-yellow-300 text-sky-950">
       <div>
-        <div className="relative z-[100] grid">
+        <div className="relative grid max-md:z-[100]">
           <View className="alternating-text-view absolute left-0 top-0 h-screen w-full">
             <Scene />
           </View>
@@ -23,7 +23,7 @@ export default function AlternatingText() {
               <div
                 className={clsx(
                   index % 2 === 0 ? "col-start-1" : "md:col-start-2",
-                  "rounded-lg p-4 backdrop-blur-lg max-md:bg-white/20",
+                  "max-md:rounded-lg max-md:bg-white/20 max-md:p-4 max-md:backdrop-blur-lg",
                 )}
               >
                 <h3 className="text-balance text-6xl font-bold">
